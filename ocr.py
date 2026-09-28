@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from PIL import Image, UnidentifiedImageError
 import pytesseract
@@ -713,7 +714,7 @@ async def ocr(
 # HEALTH CHECK
 # ==================================================
 
-@app.get("/")
+@app.get("/health")
 def home():
 
     return {
@@ -741,6 +742,12 @@ def home():
             "PDF"
         ]
     }
+
+app.mount(
+    "/",
+    StaticFiles(directory=os.path.join(os.path.dirname(__file__), "ocr-frontend"), html=True),
+    name="frontend",
+)
 
 if __name__ == "__main__":
     import uvicorn

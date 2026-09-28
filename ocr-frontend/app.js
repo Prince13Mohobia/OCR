@@ -175,7 +175,7 @@ async function checkHealth() {
   healthButton.innerHTML = '<span>◎</span> Checking...';
   setStatus('Checking...', null);
   try {
-    const response = await fetch(`${apiRoot()}/?health_check=${Date.now()}`, { cache: 'no-store' });
+    const response = await fetch(`${apiRoot()}/health?check=${Date.now()}`, { cache: 'no-store' });
     const data = await response.json();
     if (!response.ok) throw new Error(data.detail || 'API unavailable');
     markApiOnline();
