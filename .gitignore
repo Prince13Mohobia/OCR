@@ -5,6 +5,7 @@
 !ocr.py
 !requirements.txt
 !render.yaml
+!apt.txt
 !runtime.txt
 !ocr-frontend/
 !ocr-frontend/**
