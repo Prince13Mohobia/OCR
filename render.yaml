@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     rootDir: .
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt && apt-get update && apt-get install -y tesseract-ocr
     startCommand: python ocr.py
     envVars:
       - key: PORT
