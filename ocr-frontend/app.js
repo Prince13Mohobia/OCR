@@ -86,7 +86,9 @@ function setMode(mode) {
   $('base64Mode').classList.toggle('hidden', mode !== 'base64');
   $('requestNote').textContent = mode === 'file' ? 'Multipart upload · language detected automatically' : 'application/json · language detected automatically';
   $('bodyLabel').textContent = mode === 'file' ? 'multipart/form-data' : 'application/json';
-  $('bodyPreview').textContent = mode === 'file' ? 'uploaded_file: File' : '{\n  "filename": "document.png",\n  "file": "<base64>"\n}';
+  $('bodyPreview').textContent = mode === 'file'
+    ? 'uploaded_file: File\nfilename: optional text\nfile: File (alternative)'
+    : '{\n  "filename": "document.pdf",\n  "file": "<base64>"\n}';
 }
 
 async function fileAsDataUri(file) {

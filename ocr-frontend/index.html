@@ -33,7 +33,9 @@
           <label class="field-label" for="apiUrl">API endpoint</label>
           <div class="url-row"><input id="apiUrl" type="url" value="http://127.0.0.1:8000/ocr" spellcheck="false" readonly aria-readonly="true"><button class="copy-endpoint" id="copyEndpoint" type="button">Copy</button></div>
           <p class="field-hint">Use the endpoint above when connecting to the OCR API.</p>
-          <div class="request-shape"><span id="bodyLabel">multipart/form-data</span><pre id="bodyPreview">uploaded_file: File</pre></div>
+          <div class="request-shape"><span id="bodyLabel">multipart/form-data</span><pre id="bodyPreview">uploaded_file: File
+filename: optional text
+file: File (alternative)</pre></div>
         </div>
 
         <div class="panel input-panel">
