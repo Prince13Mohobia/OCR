@@ -5,7 +5,7 @@
 !ocr.py
 !requirements.txt
 !render.yaml
-!apt.txt
+!Dockerfile
 !runtime.txt
 !ocr-frontend/
 !ocr-frontend/**

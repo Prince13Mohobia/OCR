@@ -1,11 +1,10 @@
 services:
   - type: web
     name: extracto-ocr-api
-    env: python
+    runtime: docker
     plan: free
     rootDir: .
-    buildCommand: apt-get update && apt-get install -y tesseract-ocr poppler-utils && pip install -r requirements.txt && command -v tesseract
-    startCommand: python ocr.py
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: PORT
         value: 10000
