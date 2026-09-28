@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: extracto-ocr-api
+    name: OCR
     runtime: docker
     plan: free
     rootDir: .
