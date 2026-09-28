@@ -1,0 +1,13 @@
+# Ignore everything in this folder by default so the repo only contains the OCR project files
+*
+
+# Keep the project itself
+!ocr.py
+!requirements.txt
+!render.yaml
+!runtime.txt
+!ocr-frontend/
+!ocr-frontend/**
+
+# Keep Git metadata files
+!.gitignore

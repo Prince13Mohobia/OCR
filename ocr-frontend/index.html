@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1e9">
+  <title>Extracto OCR</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Extracto OCR home">
+        <span class="brand-mark">E</span>
+        <span>extracto <em>ocr</em></span>
+      </a>
+      <div class="service-pill"><span class="status-dot" id="statusDot"></span><span id="statusText">API not checked</span></div>
+    </header>
+
+    <section class="intro" id="top">
+      <div>
+        <p class="eyebrow">Document intelligence / 01</p>
+        <h1>Read the page.<br><span>Keep the language.</span></h1>
+        <p class="lede">Upload an image or PDF and get clean OCR text with automatic script detection.</p>
+      </div>
+      <button class="outline-button" id="healthButton" type="button"><span>◎</span> Check API</button>
+    </section>
+
+    <section class="workspace" aria-label="OCR workspace">
+      <div class="control-column">
+        <div class="panel api-panel">
+          <div class="panel-heading"><span>01</span><h2>Connection</h2></div>
+          <label class="field-label" for="apiUrl">API endpoint</label>
+          <div class="url-row"><input id="apiUrl" type="url" value="http://127.0.0.1:8000/ocr" spellcheck="false" readonly aria-readonly="true"><button class="copy-endpoint" id="copyEndpoint" type="button">Copy</button></div>
+          <p class="field-hint">Use the endpoint above when connecting to the OCR API.</p>
+          <div class="request-shape"><span id="bodyLabel">multipart/form-data</span><pre id="bodyPreview">uploaded_file: File</pre></div>
+        </div>
+
+        <div class="panel input-panel">
+          <div class="panel-heading"><span>02</span><h2>Input mode</h2></div>
+          <div class="segmented" role="tablist" aria-label="Input mode">
+            <button class="segment active" data-mode="file" role="tab" type="button">Upload file</button>
+            <button class="segment" data-mode="base64" role="tab" type="button">Raw JSON</button>
+          </div>
+
+          <div id="fileMode" class="mode-content">
+            <label class="dropzone" id="dropzone" for="fileInput">
+              <input id="fileInput" type="file" accept=".jpg,.jpeg,.png,.webp,.bmp,.tif,.tiff,.gif,.pdf">
+              <span class="upload-icon">↑</span>
+              <strong id="dropTitle">Drop an image or PDF</strong>
+              <span id="dropSubtext">or choose a file from your device</span>
+              <span class="file-types">JPG · PNG · WEBP · TIFF · PDF</span>
+            </label>
+            <div class="selected-file hidden" id="selectedFile">
+              <span class="file-badge" id="fileBadge">IMG</span>
+              <div><strong id="fileName">filename.png</strong><small id="fileSize">0 KB</small></div>
+              <button class="remove-button" id="removeFile" type="button" title="Remove file">×</button>
+            </div>
+            <div class="preview-wrap hidden" id="previewWrap"><img id="previewImage" alt="Selected image preview"><span class="pdf-preview">PDF ready for OCR</span></div>
+          </div>
+
+          <div id="base64Mode" class="mode-content hidden">
+            <label class="field-label" for="filenameInput">Filename <span>(optional)</span></label>
+            <input id="filenameInput" type="text" placeholder="document.png">
+            <label class="field-label textarea-label" for="base64Input">Base64 file data</label>
+            <textarea id="base64Input" placeholder="Paste raw Base64 or a data URI here..."></textarea>
+            <p class="field-hint">The API accepts raw Base64 and data URI formats.</p>
+          </div>
+        </div>
+
+        <button class="run-button" id="runButton" type="button"><span id="runIcon">◎</span><span id="runLabel">Run OCR</span><kbd>⌘ ↵</kbd></button>
+        <p class="request-note" id="requestNote">Multipart upload · language detected automatically</p>
+      </div>
+
+      <div class="result-column">
+        <div class="panel result-panel" id="resultPanel">
+          <div class="result-header"><div class="panel-heading"><span>03</span><h2>Extracted text</h2></div><div class="result-actions hidden" id="resultActions"><button class="text-button" id="copyButton" type="button">Copy</button><button class="text-button" id="downloadButton" type="button">Download</button></div></div>
+          <div class="empty-result" id="emptyResult"><div class="empty-glyph">Aa</div><h3>Your text will appear here</h3><p>Choose a file or paste Base64, then run OCR. The response stays in the source language.</p></div>
+          <div class="loading-result hidden" id="loadingResult"><span class="loader"></span><strong>Reading your document</strong><span>Detecting script and extracting text...</span></div>
+          <div class="error-result hidden" id="errorResult"><span class="error-mark">!</span><div><strong id="errorTitle">OCR request failed</strong><p id="errorMessage"></p></div></div>
+          <pre class="ocr-output hidden" id="ocrOutput"></pre>
+          <div class="result-footer hidden" id="resultFooter"><span id="resultFile">document.png</span><span id="resultPages">1 page</span></div>
+        </div>
+
+        <div class="metrics-row hidden" id="metricsRow"><div class="metric"><span id="charactersMetric">0</span><small>characters</small></div><div class="metric"><span id="wordsMetric">0</span><small>words</small></div><div class="metric"><span id="pagesMetric">0</span><small>pages</small></div><div class="metric accent"><span>auto</span><small>script detection</small></div></div>
+      </div>
+    </section>
+
+    <footer><span>Extracto OCR</span><span>Images and PDFs · source text preserved</span><span id="footerStatus">Ready</span></footer>
+  </main>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
